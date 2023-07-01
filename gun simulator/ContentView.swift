@@ -57,83 +57,91 @@ struct ContentView: View {
                             .font(.title)
                         Text("You have \(stocks) firearms.")
                             .font(.title)
-                        Button {
-                            techMenu = true
-                        } label: {
-                            Text("Improve current technology.")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .frame(width:370, height: 50)
-                                .background(.black)
-                                .cornerRadius(100)
+                        if singleLoadTech == false {
+                            Text("Start improving your current technology!")
+                        } else if year == 1500 {
+                            Text("Move over to the next year to produce some firearms!")
+                        } else if stocks == 0 && money == 0 {
+                            Text("Let us sell it to some people!")
                         }
-                        Button {
-                            year += 1
-                            stocks += 50
-                        } label: {
-                            Text("Proceed to the next year.")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .frame(width:370, height: 50)
-                                .background(.black)
-                                .cornerRadius(100)
-                        }
-                        Button {
-                            saleMenu = true
-                        } label: {
-                            Text("Sell to customers!")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .frame(width:370, height: 50)
-                                .background(.black)
-                                .cornerRadius(100)
-                        }
-                        Button {
-                            eventMenu = true
-                        } label: {
-                            Text("Watch current events.")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .frame(width:370, height: 50)
-                                .background(.black)
-                                .cornerRadius(100)
-                        }
-                        Button {
-                            resetAlert = true
-                        } label: {
-                            Text("Reset progress")
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .background(.red)
-                                .cornerRadius(100)
-                                .padding()
-                        }
-                        .alert("Are you sure?", isPresented: $resetAlert){
-                            Button(role: .destructive) {
-                                year = 1500
-                                stocks = 0
-                                money = 0
-                                singleLoadTech = false
-                                breakAction = false
-                                militaryA = 0
-                                civilianA = 0
-                                militaryB = 0
-                                civilianB = 0
-                                militaryC = 0
-                                civilianC = 0
-                                militaryD = 0
-                                civilianD = 0
-                                maxAccuracy = 1
-                                accuracyLevel = 0
+                        VStack {
+                            Button {
+                                techMenu = true
                             } label: {
-                                Text("Yes")
+                                Text("Improve current technology.")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .frame(width:370, height: 50)
+                                    .background(.black)
+                                    .cornerRadius(100)
                             }
-                            Button(role: .cancel) {
-                                
+                            Button {
+                                year += 1
+                                stocks += 50
                             } label: {
-                                Text("No, take me back.")
+                                Text("Proceed to the next year.")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .frame(width:370, height: 50)
+                                    .background(.black)
+                                    .cornerRadius(100)
                             }
-                        
+                            Button {
+                                saleMenu = true
+                            } label: {
+                                Text("Sell to customers!")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .frame(width:370, height: 50)
+                                    .background(.black)
+                                    .cornerRadius(100)
+                            }
+                            Button {
+                                eventMenu = true
+                            } label: {
+                                Text("Watch current events.")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .frame(width:370, height: 50)
+                                    .background(.black)
+                                    .cornerRadius(100)
+                            }
+                            Button {
+                                resetAlert = true
+                            } label: {
+                                Text("Reset progress")
+                                    .foregroundColor(.white)
+                                    .padding(5)
+                                    .background(.red)
+                                    .cornerRadius(100)
+                                    .padding()
+                            }
+                            .alert("Are you sure?", isPresented: $resetAlert){
+                                Button(role: .destructive) {
+                                    year = 1500
+                                    stocks = 0
+                                    money = 0
+                                    singleLoadTech = false
+                                    breakAction = false
+                                    militaryA = 0
+                                    civilianA = 0
+                                    militaryB = 0
+                                    civilianB = 0
+                                    militaryC = 0
+                                    civilianC = 0
+                                    militaryD = 0
+                                    civilianD = 0
+                                    maxAccuracy = 1
+                                    accuracyLevel = 0
+                                } label: {
+                                    Text("Yes")
+                                }
+                                Button(role: .cancel) {
+                                    
+                                } label: {
+                                    Text("No, take me back.")
+                                }
+                            }
                         }
                     }
                 }
